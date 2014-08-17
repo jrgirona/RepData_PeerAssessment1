@@ -5,9 +5,9 @@ date: "Sunday, Aug 13, 2014"
 output: html_document
 ---
 
-#Personal monitoring data analysis
+##Personal monitoring data analysis
 
-## Purpose
+### Purpose
 
 This study is intended to analyze the  data from a personal activity monitoring device, which have a 5 minute sampling  interval. 
 
@@ -15,7 +15,7 @@ The data consists of two months of data from an anonymous individual collected d
 November, 2012, 288 samples per day.
 
 
-## Methodology
+### Methodology
 
 **Step 1: Loading and preprocessing the data**
 
@@ -23,45 +23,46 @@ November, 2012, 288 samples per day.
 # 1. Downloads the Samsung data and extracts it
 
 # Settings 
-library("ggplot2")
-library("knitr")
 Sys.setlocale("LC_TIME", "C")
+library("ggplot2")
 
 # download and unzip function
-download.unzip <- function (zipurl, zipdir, zipfile) {
+# download.unzip <- function (zipurl, zipdir, zipfile) {
 
     # Create the dir using that name
-    dir.create(zipdir)
+    #dir.create(zipdir)
     # move file to directory
-    download.file(zipurl, destfile = zipdir, method = 'curl')
+    #download.file(zipurl, destfile = zipdir, method = 'curl')
     # Unzip the file into the dir
-    unzip(zipfile, exdir=zipdir)
+    #unzip(zipfile, exdir=zipdir)
     # Get the files into the dir
-    files <- list.files(zipdir)
-    files
-}
+    #files <- list.files(zipdir)
+    #files }
 
-zipurl <- 'https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip'
-zipdir <- 'DataOrigin'
-zipfile <- 'dataset.zip'
-files <- download.unzip(zipurl, zipdir, zipfile)
+# zipurl <- 'https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip'
+# zipdir <- 'DataOrigin'
+
+file <- 'activity.csv'
+
 
 # Throw an error if there's more than one
-if(length(files)>1) stop("More than one data file inside zip")
+#if(length(files)>1) stop("More than one data file inside zip")
 # Get the full name of the file
-file <- paste(zipdir, files[1], sep="/")
+#file <- paste(zipdir, files[1], sep="/")
 # Read the file
 data <- read.csv(file)
 
 # 2. Extract na values
-      data.withoutna <- data[!is.na(data$steps),]
+data.withoutna <- data[!is.na(data$steps),]
 
 
 ```
 
 **Step 2: What is mean total number of steps taken per day?**
 
-The average shows a sort of uniform distribution, with only a few valleys, 2-4 days.  
+The average shows a sort of uniform distribution, with only a few valleys, 2-4 days. 
+
+The median is 0 due to the number of intervals with 0 steps, over 50% of the slots.
 
 ```{r}
 
@@ -162,7 +163,7 @@ weekend <- data[(weekdays(as.Date(data$date)) %in% c('Saturday','Sunday')),]
 # summarize the date, aggergating by interval slot
 report09 <- aggregate(weekend$steps, by=list(weekend$interval), "mean")
 report09 <- cbind(report09,rep("weekend",length(report09$x)))
-colnames(report09) <- c("Interval","Avg. steps","weekend/weekday")
+colnames(report09) <- c("Interval","steps","weekday")
 
 report10 <- aggregate(weekday$steps, by=list(weekday$interval), "mean")
 report10 <- cbind(report10,rep("weekday",length(report10$x)))
