@@ -77,11 +77,11 @@ report03 <- aggregate(data.withoutna$steps, by=list(data.withoutna$date), "media
 
 # 3. Produce histograms
 
-barplot(report01$x, width = 1, space = NULL,names.arg = report01$Group.1,main="Number of steps per day", xlab="Date", ylab="Nbr. of steps", col="black")
+barplot(report01$x, width = 1, space = NULL,names.arg = report01$Group.1,main="PA101 - Number of steps per day", xlab="Date", ylab="Nbr. of steps", col="black")
 
-barplot(report02$x, width = 1, space = NULL,names.arg = report02$Group.1,main="Average of steps per day", xlab="Date", ylab="Average", col="black")
+barplot(report02$x, width = 1, space = NULL,names.arg = report02$Group.1,main="PA102 - Average of steps per day", xlab="Date", ylab="Average", col="black")
 
-barplot(report03$x, width = 1, space = NULL,names.arg = report03$Group.1,main="Median of steps per day", xlab="Date", ylab="Median", col="black")
+barplot(report03$x, width = 1, space = NULL,names.arg = report03$Group.1,main="PA103 - Median of steps per day", xlab="Date", ylab="Median", col="black")
 
 ```
 
@@ -96,7 +96,7 @@ It is a multimodal distribution, whose peak is at about the 104th interval, corr
 report04 <- aggregate(data.withoutna$steps, by=list(data.withoutna$interval), "mean")
 
 # 2. Produce histograms
-plot(report04$Group.1 , report04$x, type = "l", main="Average of steps per interval", xlab="Interval from 0 to 2355", ylab="Average per interval")
+plot(report04$Group.1 , report04$x, type = "l", main="PA104 - Average of steps per interval", xlab="Interval from 0 to 2355", ylab="Average per interval")
 
 # Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -137,11 +137,11 @@ report08 <- aggregate(data$steps, by=list(data$date), "median")
 
 # 3. Produce histograms
 
-barplot(report06$x, width = 1, space = NULL,names.arg = report06$Group.1,main="Number of steps per day, fulfilling table", xlab="Date", ylab="Nbr. of steps", col="black")
+barplot(report06$x, width = 1, space = NULL,names.arg = report06$Group.1,main="PA105 - Number of steps per day, fulfilling table", xlab="Date", ylab="Nbr. of steps", col="black")
 
-barplot(report07$x, width = 1, space = NULL,names.arg = report07$Group.1,main="Average of steps per day, fulfilling table", xlab="Date", ylab="Average", col="black")
+barplot(report07$x, width = 1, space = NULL,names.arg = report07$Group.1,main="PA105 - Average of steps per day, fulfilling table", xlab="Date", ylab="Average", col="black")
 
-barplot(report08$x, width = 1, space = NULL,names.arg = report08$Group.1,main="Median of steps per day, fulfilling table", xlab="Date", ylab="Median", col="black")
+barplot(report08$x, width = 1, space = NULL,names.arg = report08$Group.1,main="PA106 - Median of steps per day, fulfilling table", xlab="Date", ylab="Median", col="black")
 
 ```
 
